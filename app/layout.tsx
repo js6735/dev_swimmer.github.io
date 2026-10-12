@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import { Sidebar } from '@/components/Sidebar';
+import { SiteHeader } from '@/components/SiteHeader';
 import { site } from '@/lib/site';
 import './globals.css';
 
@@ -28,12 +29,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a className="skip-link" href="#main">
           본문으로 건너뛰기
         </a>
+        <SiteHeader />
         <div className="frame">
-          <header className="site-header cols">
-            <Link href="/" className="site-name">
-              {site.title}
-            </Link>
-          </header>
+          <Sidebar />
           <main id="main">{children}</main>
         </div>
       </body>

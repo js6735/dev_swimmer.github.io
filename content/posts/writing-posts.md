@@ -1,6 +1,7 @@
 ---
 title: 글 쓰는 방법
 date: 2026-10-10
+category: blog
 tags: [Next.js, 마크다운]
 summary: frontmatter 형식과 이미지 넣는 방법을 정리했습니다.
 ---

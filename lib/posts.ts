@@ -1,15 +1,19 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
+import { categories } from '@/lib/site';
 
 export type PostMeta = {
   slug: string; // 파일명(확장자 제외)이 곧 주소가 됩니다
   title: string;
   date: string; // YYYY-MM-DD
+  category: string; // lib/site.ts 의 categories 중 하나의 slug
   tags: string[];
   summary: string;
   readingMinutes: number;
 };
+
+export type Category = { slug: string; title: string; count: number };
 
 export type Post = PostMeta & { body: string };
 
@@ -28,11 +32,19 @@ function readPost(file: string): LoadedPost {
   const raw = fs.readFileSync(path.join(POSTS_DIR, file), 'utf8');
   const { data, content } = matter(raw);
   const body = content.trim();
+  const category = String(data.category ?? '');
+
+  // 오타로 글이 어느 주제에도 안 보이는 일이 없도록 빌드 단계에서 막습니다.
+  if (!categories.some((item) => item.slug === category)) {
+    const allowed = categories.map((item) => item.slug).join(', ');
+    throw new Error(`${file}: category "${category}" 가 lib/site.ts 에 없습니다. (사용 가능: ${allowed})`);
+  }
 
   return {
     slug,
     title: String(data.title ?? slug),
     date: toDateString(data.date),
+    category,
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     summary: String(data.summary ?? ''),
     // 한글 기준 분당 약 500자
@@ -55,10 +67,11 @@ function loadAll(): LoadedPost[] {
 }
 
 export function getAllPosts(): PostMeta[] {
-  return loadAll().map(({ slug, title, date, tags, summary, readingMinutes }) => ({
+  return loadAll().map(({ slug, title, date, category, tags, summary, readingMinutes }) => ({
     slug,
     title,
     date,
+    category,
     tags,
     summary,
     readingMinutes,
@@ -71,6 +84,23 @@ export function getPost(slug: string): Post | null {
 
   const { draft: _draft, ...rest } = post;
   return rest;
+}
+
+export function getCategories(): Category[] {
+  const posts = getAllPosts();
+  return categories.map(({ slug, title }) => ({
+    slug,
+    title,
+    count: posts.filter((post) => post.category === slug).length,
+  }));
+}
+
+export function getCategory(slug: string): Category | null {
+  return getCategories().find((item) => item.slug === slug) ?? null;
+}
+
+export function getPostsByCategory(slug: string): PostMeta[] {
+  return getAllPosts().filter((post) => post.category === slug);
 }
 
 export function formatDate(date: string) {
