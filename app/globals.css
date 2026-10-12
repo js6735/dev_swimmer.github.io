@@ -1,0 +1,369 @@
+:root {
+  --bg: #f1f4ef;
+  --ink: #17212b;
+  --ink-soft: #4a5663;
+  --line: #cfd8d0;
+  --accent: #0d6b4f;
+  --code-bg: #e5ebe4;
+
+  --sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+    'Apple SD Gothic Neo', 'Noto Sans KR', system-ui, sans-serif;
+  --serif: 'Noto Serif KR', 'Nanum Myeongjo', 'Apple SD Gothic Neo', serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, D2Coding, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  word-break: keep-all; /* 한글은 어절 단위로 줄바꿈 */
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 0.2em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 10;
+  padding: 0.5rem 0.75rem;
+  background: var(--ink);
+  color: var(--bg);
+}
+
+/* ── 레이아웃: 왼쪽 여백 열(날짜·태그) + 오른쪽 본문 열 ───────────── */
+.frame {
+  max-width: 59rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 42rem);
+  column-gap: 3rem;
+}
+
+.site-header {
+  padding-block: 2.5rem 3rem;
+}
+
+.site-name {
+  color: var(--ink);
+  font-size: 1.125rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+/* ── 글 목록 ─────────────────────────────────────────────────────── */
+.post-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post-row {
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.post-row:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.post-date {
+  padding-top: 0.35rem;
+  color: var(--ink-soft);
+  font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.post-row-title {
+  margin: 0;
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
+.post-row-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.post-row-title a:hover {
+  color: var(--accent);
+}
+
+.post-row-summary {
+  margin: 0.5rem 0 0;
+  color: var(--ink-soft);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.75rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--accent);
+  font-size: 0.875rem;
+}
+
+.empty {
+  max-width: 42rem;
+  margin-left: calc(11rem + 3rem);
+  color: var(--ink-soft);
+}
+
+/* ── 글 상세 ─────────────────────────────────────────────────────── */
+.post {
+  padding-bottom: 6rem;
+}
+
+.post-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-self: start;
+  position: sticky;
+  top: 2rem;
+  padding-top: 0.9rem;
+  color: var(--ink-soft);
+  font-size: 0.9375rem;
+}
+
+.post-meta .tags {
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.post-title {
+  margin: 0 0 2.5rem;
+  font-size: clamp(1.875rem, 4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+}
+
+/* ── 본문 타이포그래피 ───────────────────────────────────────────── */
+.prose {
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.95;
+}
+
+.prose > * {
+  margin-block: 0;
+}
+
+.prose > * + * {
+  margin-top: 1.4rem;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-family: var(--sans);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+}
+
+.prose h2 {
+  margin-top: 3rem;
+  font-size: 1.5rem;
+}
+
+.prose h3 {
+  margin-top: 2.25rem;
+  font-size: 1.25rem;
+}
+
+.prose h4 {
+  margin-top: 2rem;
+  font-size: 1.0625rem;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.4em;
+}
+
+.prose li + li {
+  margin-top: 0.4em;
+}
+
+.prose li > ul,
+.prose li > ol {
+  margin-top: 0.4em;
+}
+
+.prose blockquote {
+  margin-inline: 0;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--accent);
+  color: var(--ink-soft);
+}
+
+.prose blockquote > * {
+  margin-block: 0;
+}
+
+.prose hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.prose :not(pre) > code {
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  background: var(--code-bg);
+  font-family: var(--mono);
+  font-size: 0.875em;
+  word-break: normal;
+}
+
+.prose pre {
+  overflow-x: auto;
+  padding: 1rem 1.25rem;
+  border-radius: 6px;
+  background: var(--code-bg);
+  font-size: 0.875rem;
+  line-height: 1.7;
+  word-break: normal;
+}
+
+.prose pre code {
+  font-family: var(--mono);
+}
+
+.prose table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.prose th,
+.prose td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+/* 코드 하이라이트 (highlight.js 클래스) */
+.hljs-comment,
+.hljs-quote {
+  color: #586860;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-doctag,
+.hljs-tag,
+.hljs-name {
+  color: #9b2c6b;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition {
+  color: #0d6b4f;
+}
+
+.hljs-number,
+.hljs-built_in,
+.hljs-symbol {
+  color: #8a4b00;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-attr,
+.hljs-attribute,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-property {
+  color: #1f4fa3;
+}
+
+.hljs-deletion {
+  color: #b42318;
+}
+
+/* ── 모바일 ──────────────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .cols {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0.25rem;
+  }
+
+  .site-header {
+    padding-block: 1.5rem 2rem;
+  }
+
+  .post-date {
+    padding-top: 0;
+  }
+
+  .post-meta {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+    padding-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  .post-meta .tags {
+    flex-direction: row;
+    gap: 0.25rem 0.75rem;
+    margin-top: 0;
+  }
+
+  .empty {
+    margin-left: 0;
+  }
+}
