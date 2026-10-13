@@ -102,7 +102,3 @@ export function getCategory(slug: string): Category | null {
 export function getPostsByCategory(slug: string): PostMeta[] {
   return getAllPosts().filter((post) => post.category === slug);
 }
-
-export function formatDate(date: string) {
-  return date.replaceAll('-', '.');
-}

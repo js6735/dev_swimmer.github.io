@@ -1,4 +1,4 @@
-import { PostList } from '@/components/PostList';
+import { PostBrowser } from '@/components/PostBrowser';
 import { getAllPosts } from '@/lib/posts';
 
 export default function HomePage() {
@@ -15,7 +15,7 @@ export default function HomePage() {
   return (
     <>
       <h1 className="page-title">전체 글</h1>
-      <PostList posts={posts} />
+      <PostBrowser posts={posts} />
     </>
   );
 }

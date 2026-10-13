@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { PostList } from '@/components/PostList';
+import { PostBrowser } from '@/components/PostBrowser';
 import { getCategories, getCategory, getPostsByCategory } from '@/lib/posts';
 
 // output: 'export' 에서는 빌드 때 만든 주제 페이지만 존재합니다.
@@ -31,7 +31,7 @@ export default async function CategoryPage({ params }: Props) {
         {category.title} <span className="page-title-count">{posts.length}</span>
       </h1>
       {posts.length > 0 ? (
-        <PostList posts={posts} />
+        <PostBrowser posts={posts} />
       ) : (
         <p className="empty">이 주제에는 아직 글이 없습니다.</p>
       )}

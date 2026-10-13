@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { TagList } from '@/components/TagList';
-import { formatDate, type PostMeta } from '@/lib/posts';
+import { formatDate } from '@/lib/format';
+import type { PostMeta } from '@/lib/posts';
 
 export function PostList({ posts }: { posts: PostMeta[] }) {
   return (

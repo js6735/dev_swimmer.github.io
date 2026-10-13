@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Markdown } from '@/components/Markdown';
 import { TagList } from '@/components/TagList';
-import { formatDate, getAllPosts, getPost } from '@/lib/posts';
+import { formatDate } from '@/lib/format';
+import { getAllPosts, getPost } from '@/lib/posts';
 
 // output: 'export' 에서는 빌드 때 만든 슬러그만 존재합니다.
 export const dynamicParams = false;
