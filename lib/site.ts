@@ -9,6 +9,8 @@ export const site = {
 export const categories = [
   { slug: 'frontend', title: '프론트엔드' },
   { slug: 'wechat', title: '위챗 미니프로그램' },
+  { slug: 'server', title: '서버' },
+  { slug: 'infra', title: '인프라' },
   { slug: 'blog', title: '블로그 운영' },
 ] as const;
 
