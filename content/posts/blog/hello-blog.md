@@ -1,7 +1,6 @@
 ---
 title: 블로그를 시작합니다
 date: 2026-10-12
-category: blog
 tags: [회고, 블로그]
 summary: Next.js 정적 export로 만들어 GitHub Pages에 올리는 블로그입니다.
 ---

@@ -7,7 +7,7 @@ export default function HomePage() {
   if (posts.length === 0) {
     return (
       <p className="empty">
-        아직 글이 없습니다. content/posts/ 폴더에 마크다운(.md) 파일을 추가하세요.
+        아직 글이 없습니다. content/posts/&lt;카테고리&gt;/ 폴더에 마크다운(.md) 파일을 추가하세요.
       </p>
     );
   }

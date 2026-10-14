@@ -1,7 +1,6 @@
 ---
 title: VPC와 Bastion Host 정리
 date: 2026-10-13
-category: infra
 tags: [AWS, VPC, Bastion, 네트워크]
 summary: VPC의 구성 요소(서브넷, 라우팅, 게이트웨이, 보안 그룹)와 private 서버에 접속하기 위한 Bastion Host의 개념을 정리했습니다.
 ---

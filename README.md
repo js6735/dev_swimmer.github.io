@@ -14,13 +14,18 @@ yarn build   # out/ 에 정적 사이트 생성
 
 ## 글 쓰기
 
-`content/posts/` 에 `.md` 파일을 추가합니다. 파일 이름이 주소가 됩니다. (영문 소문자·숫자·하이픈 권장)
+`content/posts/<카테고리>/` 폴더에 `.md` 파일을 추가합니다. 폴더 이름이 곧 주제(category)이고, 파일 이름이 주소(`/posts/파일이름/`)가 됩니다. (영문 소문자·숫자·하이픈 권장, 폴더가 달라도 파일 이름은 겹치면 안 됩니다)
+
+```
+content/posts/
+  frontend/react-hooks.md
+  infra/vpc-and-bastion.md
+```
 
 ```md
 ---
 title: 글 제목
 date: 2026-10-12
-category: frontend   # lib/site.ts 의 categories 중 하나 (필수)
 tags: [태그1, 태그2]
 summary: 목록에 보일 한두 줄 요약
 draft: false   # true면 개발 서버에서만 보임
@@ -40,7 +45,7 @@ export const categories = [
 ];
 ```
 
-글의 `category` 가 목록에 없는 값이면 오타를 막기 위해 빌드가 실패합니다.
+`content/posts/` 아래 폴더 이름이 목록에 없는 값이면 오타를 막기 위해 빌드가 실패합니다. 주제를 추가하면 같은 이름의 폴더를 만들어 글을 넣으세요.
 
 이미지는 `public/images/` 에 넣고 `![설명](/images/파일명.png)` 로 적습니다.
 
@@ -55,7 +60,7 @@ export const categories = [
 ```
 app/              라우트 (전체 목록, 주제별 목록, 글 상세) + globals.css
 components/       SiteHeader, Sidebar(주제 목록), PostList, Markdown, TagList
-content/posts/    글 (마크다운)
+content/posts/    글 (마크다운, 주제별 폴더)
 lib/              site.ts(블로그 이름, 주제 목록), posts.ts(글 읽기)
 public/images/    글에 쓰는 이미지
 ```
