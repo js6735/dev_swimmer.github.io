@@ -11,6 +11,7 @@ export const categories = [
   { slug: 'wechat', title: '위챗 미니프로그램' },
   { slug: 'server', title: '서버' },
   { slug: 'infra', title: '인프라' },
+  { slug: 'linux', title: '리눅스' },
   { slug: 'blog', title: '블로그 운영' },
 ] as const;
 
